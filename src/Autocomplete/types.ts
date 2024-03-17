@@ -6,8 +6,9 @@ export type OptionType = {
 export type OptionsListType = OptionType[];
 
 export type AutocompleteType = {
-  options: OptionsListType
+  options?: OptionsListType;
   placeholder?: string;
   id?: string;
-  onChange?: (value: OptionType) => void
+  getOptions?: () => Promise<OptionsListType>;
+  onChange?: (value: OptionType) => void;
 };

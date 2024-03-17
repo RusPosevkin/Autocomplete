@@ -1,4 +1,4 @@
-import React, { useRef, useState, KeyboardEvent, MouseEvent, SyntheticEvent } from 'react'
+import { useRef, useState, KeyboardEvent, MouseEvent } from 'react'
 
 import type { OptionsListType } from '..'
 import type { useAutoCompleteType } from './types'
@@ -41,7 +41,9 @@ export default function useAutoComplete({ delay = 500, getFilteredOptions, onCha
   async function getSuggestions(searchTerm: string) {
     if (searchTerm && getFilteredOptions) {
       const options = await getFilteredOptions(searchTerm);
-      setSuggestions(options);
+      if (options) {
+        setSuggestions(options);
+      }
     }
   }
 
