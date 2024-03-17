@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import Autocomplete from './Autocomplete';
-import type { OptionType, OptionsListType } from './Autocomplete';
+import Autocomplete from '../Autocomplete';
+import type { OptionType, OptionsListType } from '../Autocomplete';
 
 import './App.css';
 
