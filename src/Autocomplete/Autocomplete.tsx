@@ -1,6 +1,6 @@
 import useAutoComplete from './hooks/use-autocomplete';
 
-import type { AutocompleteType, OptionType } from './types';
+import type { AutocompleteType } from './types';
 
 import './Autocomplete.css';
 
@@ -18,10 +18,9 @@ function Autocomplete({
     suggestions,
     selectedIndex,
   } = useAutoComplete({
-    // onChange: (value: OptionType) => console.log('value: ', value),
     onChange,
     getFilteredOptions: (search: string) => {
-      return options.filter(option => new RegExp(`^${search}`, 'i').test(option.label));
+      return options.filter(option => new RegExp(`${search}`, 'i').test(option.label));
     }
   })
   console.log(suggestions)
