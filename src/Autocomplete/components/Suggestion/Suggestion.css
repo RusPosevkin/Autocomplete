@@ -1,0 +1,16 @@
+.suggestion:hover {
+  background-color: lightgrey;
+}
+
+.suggestion{
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.suggestion-selected {
+  border: 2px solid red;
+}
+
+.highlight {
+  background-color: lightblue;
+}

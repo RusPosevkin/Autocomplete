@@ -1,9 +1,11 @@
+import { useEffect, useState } from 'react';
+
 import useAutoComplete from './hooks/use-autocomplete';
+import Suggestion from './components/Suggestion';
 
 import type { AutocompleteType, OptionsListType } from './types';
 
 import './Autocomplete.css';
-import { useEffect, useState } from 'react';
 
 function Autocomplete({
   options,
@@ -89,13 +91,13 @@ function Autocomplete({
               >
                 {
                   suggestions.map((_, index) => (
-                    <li
-                      className={'suggestion ' + (index === selectedIndex && 'selected-suggestion')}
+                    <Suggestion
                       key={index}
-                      {...optionData}
-                    >
-                      {suggestions[index].label}
-                    </li>
+                      isSelected={index === selectedIndex}
+                      onClick={optionData.onClick}
+                      label={suggestions[index].label}
+                      searchText={inputData.value}
+                    />
                   ))
                 }
               </ul>

@@ -43,7 +43,6 @@ function App() {
 
         <Autocomplete
           placeholder='Country'
-          id='country-autcomplete'
           getOptions={localFetchData}
           onChange={(newValue: OptionType) => setSelectedAsyncValue(newValue.label || '')}
         />
@@ -56,7 +55,6 @@ function App() {
 
         <Autocomplete
           placeholder='Country'
-          id='country-autcomplete'
           getOptions={localFailedFetchData}
         />
       </section>

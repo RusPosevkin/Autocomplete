@@ -20,7 +20,7 @@ ul {
 }
 
 .suggestion:hover {
-  background-color: lightgrey;
+  background-color: rgb(235, 232, 232);
 }
 
 .suggestion{
