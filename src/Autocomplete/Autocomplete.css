@@ -1,0 +1,54 @@
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.autocomplete-input {
+  width: 200px;
+}
+
+.suggestions-list-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.suggestions-list {
+  width: 200px;
+  margin-top: 1px;
+  max-height: 60px;
+  overflow-y: scroll;
+}
+
+.suggestion:hover {
+  background-color: lightgrey;
+}
+
+.suggestion{
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.selected-suggestion {
+  border: 2px solid red;
+}
+
+.loader {
+  margin: 5px 0;
+  width: 48px;
+  height: 48px;
+  border: 5px solid black;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
