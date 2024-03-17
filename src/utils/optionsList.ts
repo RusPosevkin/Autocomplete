@@ -1,5 +1,9 @@
 import { OptionsListType } from "../Autocomplete";
 
+/**
+* Example of data structure for list of options for autocomplete component
+*/
+
 export const optionsList: OptionsListType = [
   { value: 'uk', label: 'United Kingdom' },
   { value: 'usa', label: 'United States' },

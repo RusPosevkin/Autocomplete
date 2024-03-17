@@ -5,6 +5,11 @@ type APIType = {
   }
 }
 
+/**
+* Function for transforming response of API restcountries.com
+* @param rawData - API response
+*/
+
 export const transformData = (rawData: any) => {
   return rawData.map((item: APIType) => {
     return {

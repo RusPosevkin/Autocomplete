@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import useAutoComplete from './hooks/use-autocomplete';
+import useAutoComplete from './hooks/useAutoComplete';
 import Suggestion from './components/Suggestion';
 
 import type { AutocompleteType, OptionsListType } from './types';
@@ -57,9 +57,6 @@ function Autocomplete({
       .catch(e => setIsError(true))
 
   }, [options, getOptions])
-
-
-  console.log(suggestions)
 
   if (isError) {
     return (

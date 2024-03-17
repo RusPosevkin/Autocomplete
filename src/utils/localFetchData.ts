@@ -17,7 +17,8 @@ export const localFetchData = async () => {
 export const localFailedFetchData = async () => {
   try {
     await sleepError(2500);
-    return optionsList
+
+    return optionsList;
   } catch (e) {
     throw new Error('Error message example');
   }

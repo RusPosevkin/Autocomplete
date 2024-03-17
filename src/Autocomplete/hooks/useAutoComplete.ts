@@ -12,6 +12,14 @@ const KEY_EVENTS = {
   'ENTER': 'Enter',
 }
 
+/**
+* Hook for preparing data for Autocomplete component,
+* handles keyboard actions
+* @param delay - delay in miliceconds for debouncing of user input
+* @param getFilteredOptions - function that filtered options based on search input value
+* @param onChange - handler of selected option changing
+*/
+
 export default function useAutoComplete({ delay = 500, getFilteredOptions, onChange }: useAutoCompleteType) {
   const listRef = useRef<HTMLUListElement>(null);
   const [delayTimeout, setDelayTimeout] = useState(setTimeout(() => { }, 0));
@@ -19,9 +27,8 @@ export default function useAutoComplete({ delay = 500, getFilteredOptions, onCha
   const [isLoading, setIsLoading] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [textValue, setTextValue] = useState('');
-  console.log(selectedIndex);
 
-  // performance – add debouncing
+  // improve performance – add debouncing
   function delayInvoke(cb: () => void) {
     if (delayTimeout) {
       clearTimeout(delayTimeout);
@@ -38,6 +45,7 @@ export default function useAutoComplete({ delay = 500, getFilteredOptions, onCha
     clearSuggestions();
   }
 
+  // async filtering of option
   async function getSuggestions(searchTerm: string) {
     if (searchTerm && getFilteredOptions) {
       const options = await getFilteredOptions(searchTerm);
@@ -63,7 +71,6 @@ export default function useAutoComplete({ delay = 500, getFilteredOptions, onCha
     });
   }
 
-
   function scrollUp() {
     if (!listRef.current) return;
 
@@ -74,8 +81,6 @@ export default function useAutoComplete({ delay = 500, getFilteredOptions, onCha
     }
 
     listRef.current.scrollTop -= optionHeight;
-
-    console.log('scrollUp');
   }
 
   function pageUp() {
@@ -83,8 +88,6 @@ export default function useAutoComplete({ delay = 500, getFilteredOptions, onCha
 
     setSelectedIndex(0);
     listRef.current.scrollTop = 0;
-
-    console.log('pageUp');
   }
 
   function scrollDown() {
@@ -96,8 +99,6 @@ export default function useAutoComplete({ delay = 500, getFilteredOptions, onCha
       setSelectedIndex(selectedIndex + 1);
     }
     listRef.current.scrollTop = selectedIndex * optionHeight;
-
-    console.log('scrollDown');
   }
 
   function pageDown() {
@@ -107,8 +108,6 @@ export default function useAutoComplete({ delay = 500, getFilteredOptions, onCha
 
     setSelectedIndex(suggestions.length - 1);
     listRef.current.scrollTop = suggestions.length * optionHeight;
-
-    console.log('pageDown');
   }
 
   const handleEnter = () => selectOption(selectedIndex);

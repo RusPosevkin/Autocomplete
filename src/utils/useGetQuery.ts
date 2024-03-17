@@ -1,6 +1,12 @@
 
 import { useState, useEffect } from 'react';
 
+
+/**
+* Hook for fetching data with GET request
+* @param query - URL with query params
+* @param mapFunction - function that transforms response
+*/
 export const useGetQuery = <T,>(
   query: string,
   mapFunction: (rawData: any) => T
