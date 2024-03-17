@@ -1,16 +1,23 @@
 import { useState } from 'react';
 
-import { localFailedFetchData, localFetchData } from '../utils/localFetchData';
 import Autocomplete from '../Autocomplete';
-import type { OptionType } from '../Autocomplete';
+import type { OptionType, OptionsListType } from '../Autocomplete';
+import {
+  localFailedFetchData,
+  localFetchData,
+  optionsList,
+  useGetQuery,
+  transformData
+} from '../utils';
 
 import './App.css';
-import { optionsList } from '../utils/optionsList';
-
 
 function App() {
   const [selectedSyncValue, setSelectedSyncValue] = useState('');
   const [selectedAsyncValue, setSelectedAsyncValue] = useState('');
+  const [selectedAPIValue, setSelectedAPIValue] = useState('');
+
+  const apiOptions = useGetQuery<OptionsListType>('https://restcountries.com/v3.1/all?fields=name', transformData)
 
   return (
     <div className="App">
@@ -50,13 +57,32 @@ function App() {
 
       <section>
         <h2>
-          Local Data - asynchronous – error state
+          Local Data - async – error state
         </h2>
 
         <Autocomplete
           placeholder='Country'
           getOptions={localFailedFetchData}
         />
+      </section>
+
+      <section>
+        <h2>
+          API Call
+        </h2>
+
+        <div>
+          Selected option: {selectedAPIValue}
+        </div>
+        {
+          apiOptions.data ? (
+            <Autocomplete
+              placeholder='Country'
+              options={apiOptions.data}
+              onChange={(newValue: OptionType) => setSelectedAPIValue(newValue.label || '')}
+            />
+          ) : null
+        }
       </section>
     </div>
   );

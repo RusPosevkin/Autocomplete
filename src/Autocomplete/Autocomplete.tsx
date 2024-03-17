@@ -13,10 +13,11 @@ function Autocomplete({
   id = 'autocomplete',
   onChange = () => { },
   getOptions,
+  loading,
 }: AutocompleteType) {
   const [optionsData, setOptionsData] = useState<OptionsListType | null>(null);
   const [isError, setIsError] = useState(false);
-  const [isOptionsLoading, setIsOptionsLoading] = useState(false);
+  const [isOptionsLoading, setIsOptionsLoading] = useState(loading || false);
 
   const {
     inputData,
